@@ -1,23 +1,23 @@
-# WeChatFerry (微信自动化)
-# 注意：需要通过 pip 安装指定版本
-# pip install --upgrade wcferry
-wcferry>=39.5.0
+# WeChatHook (微信自动化)
+# 支持微信版本：3.9.5.81 ~ 4.1.1
+wxhook>=0.0.1
 
-# LLM 相关
+# LLM 相关 - 使用宽松版本让 pip 自动解决冲突
 torch>=2.0.0
-transformers>=4.30.0
-peft>=0.5.0  # LoRA 微调
-accelerate>=0.20.0
+transformers>=4.30.0,<4.50.0  # 避免与 regex 冲突
+peft>=0.5.0
+accelerate>=0.20.0,<1.0.0
 
 # 数据处理
 pandas>=2.0.0
 numpy>=1.24.0
-datasets>=2.14.0
+datasets>=2.14.0,<4.0.0  # 避免与 huggingface_hub 冲突
 
 # 工具库
 pyyaml>=6.0
 python-dotenv>=1.0.0
 loguru>=0.7.0
+httpx>=0.25.0  # API 调用
 
 # 测试
 pytest>=7.4.0

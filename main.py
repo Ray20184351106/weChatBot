@@ -3,8 +3,9 @@
 """
 微信自动回复机器人主入口
 
-基于 WeChatFerry + WeClone 实现
+基于 WeChatHook + WeClone 实现
 能够学习用户聊天风格并自动回复消息
+支持微信版本：3.9.5.81 ~ 4.1.1
 """
 
 import sys

@@ -1,6 +1,6 @@
 # WeChat Auto-Reply Bot
 
-基于 WeChatFerry + WeClone 实现的微信自动回复机器人，能够学习你的聊天风格并自动回复消息。
+基于 WeChatHook + WeClone 实现的微信自动回复机器人，能够学习你的聊天风格并自动回复消息。
 
 ## ✨ 功能特性
 
@@ -15,7 +15,7 @@
 
 - Windows 10/11 (64 位)
 - Python 3.10+
-- 微信 3.9.12.51 (必须是指定版本)
+- 微信 3.9.5.81 ~ 4.1.1 (支持最新版本)
 
 ### 安装步骤
 
@@ -32,7 +32,7 @@
 3. **配置环境变量**
    ```bash
    # 复制环境变量模板
-   copy .env.example .env
+   cp .env.example .env
    ```
    
    编辑 `.env` 文件，填入你的配置：
@@ -75,7 +75,7 @@ python training/train_style.py
 ```
 D:/Desktop/weChatBot/
 ├── core/
-│   ├── wechat_bot.py         # WeChatFerry 封装
+│   ├── wechat_bot.py         # WeChatHook 封装
 │   ├── message_collector.py  # 消息收集器
 │   └── llm_engine.py         # LLM 推理引擎
 ├── training/
@@ -92,7 +92,7 @@ D:/Desktop/weChatBot/
 ## ⚠️ 注意事项
 
 1. **封号风险**：请控制消息发送频率，避免被微信判定为机器人
-2. **微信版本**：必须使用微信 3.9.12.51，更新会导致功能失效
+2. **微信版本**：支持微信 3.9.5.81 ~ 4.1.1，建议使用最新版
 3. **数据隐私**：聊天记录存储在本地，请勿上传到公开仓库
 
 ## 🛠️ 开发
@@ -116,5 +116,5 @@ MIT License
 
 ## 🙏 感谢
 
-- [WeChatFerry](https://github.com/lich0821/WeChatFerry) - 微信自动化框架
+- [WeChatHook](https://github.com/lyx102/WeChatHook) - 微信 Hook 框架 (支持最新版)
 - [WeClone](https://github.com/xming521/WeClone) - 聊天风格模仿
