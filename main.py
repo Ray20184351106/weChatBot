@@ -3,9 +3,9 @@
 """
 微信自动回复机器人主入口
 
-基于 WeChatHook + WeClone 实现
+基于 pywinauto + OCR 实现 UI 自动化
 能够学习用户聊天风格并自动回复消息
-支持微信版本：3.9.5.81 ~ 4.1.1
+支持所有微信版本 (基于 UI 自动化)
 """
 
 import sys
@@ -34,7 +34,7 @@ def setup_logger():
     logger.add(
         sys.stdout,
         level="INFO",
-        format="<green>{time:HH:mm:ss}</green> | <level>{level: <8}</level> | <cyan>{message}</cyan>"
+        format="{time:HH:mm:ss} | {level: <8} | {message}"
     )
 
 
@@ -88,6 +88,7 @@ def main():
     # 5. 启动消息监听
     logger.info("开始监听消息...")
     logger.warning("注意：当前模式仅收集数据，不会自动回复")
+    logger.warning("UI 自动化模式需要微信窗口保持可见，不要最小化")
     logger.warning("收集至少 100 条对话后再启用自动回复功能")
 
     try:

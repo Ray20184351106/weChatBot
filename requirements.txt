@@ -1,6 +1,13 @@
-# WeChatHook (微信自动化)
-# 支持微信版本：3.9.5.81 ~ 4.1.1
-wxhook>=0.0.1
+# WeChat UI Automation (微信 UI 自动化)
+# 支持所有微信版本 (基于 UI 自动化)
+pywinauto>=0.6.8
+pyautogui>=0.9.53
+pillow>=10.0.0
+
+# OCR (屏幕文字识别)
+# 可选：使用 Windows 自带 OCR 或 pytesseract
+pytesseract>=0.3.10
+screen-ocr>=0.7.0
 
 # LLM 相关 - 使用宽松版本让 pip 自动解决冲突
 torch>=2.0.0
