@@ -29,6 +29,7 @@ httpx>=0.25.0  # API 调用
 # 测试
 pytest>=7.4.0
 pytest-asyncio>=0.21.0
+pytest-cov>=4.1.0  # 覆盖率报告
 
 # 代码质量
 black>=23.0.0

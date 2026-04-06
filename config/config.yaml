@@ -1,0 +1,156 @@
+# WeChatBot 配置文件
+# 最后更新：2026-04-05
+
+# 微信自动化配置
+wechat:
+  # 微信版本支持 (自动检测)
+  supported_versions:
+    - "3.x"  # WeChat.exe
+    - "4.x"  # WeChatAppEx.exe
+
+  # 检查间隔 (秒)
+  check_interval: 2.0
+
+  # 窗口最小尺寸
+  min_window_width: 100
+  min_window_height: 100
+
+# OCR 配置
+ocr:
+  # Tesseract 路径
+  tesseract_path: "E:/Tesseract/tesseract.exe"
+  tessdata_path: "E:/Tesseract/tessdata"
+
+  # OCR 语言
+  language: "chi_sim+eng"
+
+  # OCR 区域偏移比例 (相对于窗口尺寸)
+  # 左边距比例、上边距比例、右边距比例、下边距比例
+  offset_ratio:
+    left: 0.05      # 左边距占窗口宽度的 5%
+    top: 0.15       # 上边距占窗口高度的 15%
+    right: 0.05     # 右边距占窗口宽度的 5%
+    bottom: 0.20    # 下边距占窗口高度的 20%
+
+  # 固定偏移 (像素，用于微调)
+  fixed_offset:
+    left: 50
+    top: 100
+    right: 50
+    bottom: 150
+
+  # 图像预处理
+  preprocessing:
+    enabled: true
+    grayscale: true      # 灰度化
+    threshold: false     # 二值化
+    denoise: true        # 噪声去除
+    enhance_contrast: true  # 对比度增强
+
+# 消息发送配置
+send:
+  # 延迟配置 (秒)
+  delays:
+    window_focus: 0.5    # 窗口激活后等待
+    search_contact: 0.3  # 搜索联系人后等待
+    after_input: 0.2     # 输入内容后等待
+    after_send: 0.5      # 发送后等待
+
+  # 重试配置
+  retry:
+    max_attempts: 3      # 最大重试次数
+    retry_delay: 1.0     # 重试间隔 (秒)
+
+  # 发送确认
+  confirmation:
+    enabled: true        # 是否检查发送是否成功
+    check_delay: 1.0     # 检查延迟 (秒)
+
+# 消息解析配置
+parse:
+  # 时间戳识别正则
+  timestamp_patterns:
+    - "\\d{1,2}:\\d{2}"          # 12:34
+    - "\\d{4}-\\d{2}-\\d{2}"     # 2024-01-01
+    - "\\d{1,2}/\\d{1,2}"        # 1/1
+
+  # 消息去重
+  dedup:
+    max_history: 100     # 最大历史记录数
+    hash_method: "content"  # 去重方式：content, hash
+
+  # 群聊识别关键词
+  group_keywords:
+    - "@"
+    - "群聊"
+    - "chatroom"
+
+# 自动回复配置
+auto_reply:
+  # 是否启用自动回复
+  enabled: false
+
+  # 数据收集阈值 (收集多少对话后才启用自动回复)
+  min_training_data: 100
+
+  # 回复频率限制
+  rate_limit:
+    min_interval: 3.0    # 最小回复间隔 (秒)
+    max_per_minute: 5    # 每分钟最大回复数
+
+  # 人工接管检测
+  human_takeover:
+    enabled: true
+    keywords:
+      - "#人工"
+      - "#stop"
+      - "停止自动回复"
+
+  # 排除联系人 (不自动回复)
+  exclude_contacts: []
+
+  # 仅回复联系人 (白名单)
+  whitelist_contacts: []
+
+# LLM 配置
+llm:
+  provider: "openai"
+  api_key: ""
+  base_url: ""
+  model: "gpt-3.5-turbo"
+
+  # 本地模型配置
+  local_model_path: ""
+  lora_path: ""
+
+  # 生成参数
+  max_tokens: 512
+  temperature: 0.7
+  top_p: 0.9
+
+# 训练配置
+training:
+  # 基础模型
+  base_model: "THUDM/chatglm3-6b"
+
+  # LoRA 配置
+  lora:
+    r: 8
+    alpha: 32
+    dropout: 0.1
+
+  # 训练参数
+  epochs: 3
+  batch_size: 8
+  learning_rate: 0.0002
+  max_length: 512
+
+  # 输出目录
+  output_dir: "data/models/lora"
+
+# 日志配置
+logging:
+  level: "INFO"
+  file: "data/logs/bot.log"
+  rotation: "1 day"
+  retention: "7 days"
